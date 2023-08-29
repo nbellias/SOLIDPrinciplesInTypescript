@@ -1,9 +1,9 @@
-import { User } from "./User";
+import { AccountType, User } from "./User";
 
 export class UserAccountService {
 
-    createUser(name: string, email: string, password: string): User {
-        return new User(name, email, password);
+    createUser(name: string, email: string, password: string, accountType: AccountType): User {
+        return new User(name, email, password, accountType);
     }
 
     login(user: User, password: string) { 
