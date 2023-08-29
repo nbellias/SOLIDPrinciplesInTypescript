@@ -1,4 +1,5 @@
 import { UserRepository } from "./DependencyInversion/UserRepository";
+import { ACollection } from "./InterfaceSegregation/ACollection";
 import { Stack } from "./LiskovSubstitution/Stack";
 import { VoucherService } from "./OpenClosed/VoucherService";
 import { EmailService } from "./SingleResponsibility/EmailService";
@@ -23,6 +24,13 @@ console.log(`User ${user.generateSlug()} deserves ${voucherService.getVoucher(us
 const userStack = new Stack<User>();
 userStack.push(user);
 console.log(`User ${userStack.pop()?.generateSlug()} popped from the stack`);
+
+// Interface Segregation Principle
+let someUsers: User[] = [];
+const userArray = new ACollection(someUsers);
+userArray.insertAt(user, 0);
+console.log(userArray.isEmpty());
+console.log(`User ${userArray.deleteAt(0)?.generateSlug()} deleted from the array`);
 
 // Dependency Inversion Principle
 userRepository.users.push(user);
